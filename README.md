@@ -43,5 +43,5 @@ Baller Hub is a full-stack application aimed at providing detailed analytics of 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/baller-hub.git
+   git clone https://github.com/achu94/baller-hub.git
    cd baller-hub
