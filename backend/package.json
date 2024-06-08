@@ -2,6 +2,11 @@
   "name": "baller-hub-api",
   "module": "./src/server.ts",
   "type": "module",
+  "scripts": {
+    "start": "NODE_ENV=production node out/server.js",
+    "dev": "NODE_ENV=development bun --watch src/server.ts",
+    "test": "NODE_ENV=test jest"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/express": "^4.17.21",
