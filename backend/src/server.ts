@@ -1,1 +1,4 @@
-console.log("Hello via Bun!");
+// server.ts
+
+// Init db
+import "./config/sequelize";
