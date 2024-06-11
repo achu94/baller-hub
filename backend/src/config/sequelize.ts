@@ -1,16 +1,17 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Sequelize, DataTypes } from 'sequelize';
-import config, { type DbConfig } from '../config/config'; // Ensure this path is correct
+import configData, { type Config } from '../config/config'; // Ensure this path is correct
 
+// Start Config
+const config: Config = configData;
 const basename: string = path.basename(__filename);
-const env = (process.env.NODE_ENV as 'development' | 'test' | 'production') || 'development';
-const dbConfig: DbConfig = config[env];
 
-const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
-  host: dbConfig.host,
-  port: dbConfig.port,
-  dialect: dbConfig.dialect,
+// DB Connection
+const sequelize = new Sequelize(config.database, config.username, config.password, {
+  host: config.host,
+  port: config.port,
+  dialect: config.dialect,
 });
 
 const db: any = {};
@@ -59,7 +60,7 @@ async function connectAndInitModels(): Promise<void> {
     // Check if tables exist, if not create them
     for (const modelName of Object.keys(db)) {
       const model = db[modelName];
-      await model.sync({ alter: true }); // This will create the table if it doesn't exist and update it if it does
+      // await model.sync({ alter: true }); // This will create the table if it doesn't exist and update it if it does
       console.log(`${modelName} table checked and synced successfully.`);
     }
 
