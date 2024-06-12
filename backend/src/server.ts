@@ -6,6 +6,10 @@ import express, { type Express } from "express";
 import "./config/sequelize";
 // Import config from .env
 import config, { type Config } from "./config/config";
+// Routes
+import routes from "./routes";
+// Error handler
+import errorHandler from "./middleware/errorHandler";
 
 // Server port
 const PORT = config.server_port;
@@ -18,6 +22,11 @@ app.use(express.json());
 
 // Middleware for logging HTTP requests
 app.use(morgan('dev'));
+
+// Routes handler
+app.use('/api/v1/', routes);
+// Error handler
+app.use(errorHandler);
 
 // Start server, handle error.
 (function startServer() {
